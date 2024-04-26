@@ -73,36 +73,45 @@ export class FavoritesView extends Favorites {
     update() {
         this.removeAllTr()
 
-        this.entries.forEach( user => {
-            const row = this.createRow()
+        if (this.entries.length === 0) {
+            this.tbody.innerHTML = `
+                <tr>
+                    <td class="noFavYet" colspan="100%">
+                    <img class="star-img" src="./assets/star.svg" alt="" />
+                    <p class="star-text">Nenhum favorito ainda</p>
+                    </td>
+                </tr>`;
+            } else {
+                this.entries.forEach( user => {
+                    const row = this.createRow()
 
-            row.querySelector('.user img').src = `https://github.com/${user.login}.png`
-            row.querySelector('.user img').alt = `Imagem de ${user.name}`
-            row.querySelector('.user a').href = `https://github.com/${user.login}`
-            row.querySelector('.user p').textContent = user.name
-            row.querySelector('.user span').textContent = user.login
-            row.querySelector('.repos').textContent = user.public_repos
-            row.querySelector('.followers').textContent = user.followers
+                    row.querySelector('.user img').src = `https://github.com/${user.login}.png`
+                    row.querySelector('.user img').alt = `Imagem de ${user.name}`
+                    row.querySelector('.user a').href = `https://github.com/${user.login}`
+                    row.querySelector('.user p').textContent = user.name
+                    row.querySelector('.user span').textContent = user.login
+                    row.querySelector('.repos').textContent = user.public_repos
+                    row.querySelector('.followers').textContent = user.followers
 
-            row.querySelector('.remove').onclick = () => {
-                const isOk = confirm('Tem certeza que deseja deletar esta linha?')
-                if(isOk) {
-                    this.delete(user)
-                }
+                    row.querySelector('.remove').onclick = () => {
+                        const isOk = confirm('Tem certeza que deseja deletar esta linha?')
+                        if(isOk) {
+                            this.delete(user)
+                        }
+                    }
+
+                    this.tbody.append(row)
+                })
             }
-
-            this.tbody.append(row)
-        })
-
-    }
+        }
 
     createRow() {
         const tr = document.createElement('tr')
 
         tr.innerHTML = `
             <td class="user">
-                <img src="https://github.com/phfernandes-dev.png" alt="Imagem de Pedro">
-                <a href="https://github.com/phfernandes-dev" target="_blank">
+            <img src="https://github.com/phfernandes-dev.png" alt="Imagem de Pedro">
+            <a href="https://github.com/phfernandes-dev" target="_blank">
                     <p>Pedro Fernandes</p>
                     <span>phfernandes-dev</span>
                 </a>
