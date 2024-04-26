@@ -2,10 +2,11 @@
 
 /* PADRONIZAÇÃO */
 
-body {
-    font-size: 1.6rem;
-    background: black;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
 
 :root {
     font-size: 62.5%;
@@ -18,14 +19,15 @@ body {
     --no-fav-yet: hsl(189, 4%, 32%);
     --table-stroke: hsl(191, 31%, 42%);
     --btn-remove: hsl(355, 91%, 66%);
+    --btn-remove-hover: hsl(355, 86%, 60%);
+    --bg-color: hsl(0, 0%, 0%);
 }
 
 /* ESTILO GLOBAL */
 
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+body {
+    font-size: 1.6rem;
+    background: var(--bg-color);
 }
 
 body * {
@@ -33,13 +35,8 @@ body * {
     font-family: var(--ff-primary);
 }
 
-.app {
-    padding: 2rem;
-    max-width: 112rem;
-    margin: 10rem auto;
-}
+/* AUXILIARY CLASSES  */
 
-/* SITE  */
 .sr-only {
 position: absolute;
 width: 1px;
@@ -50,6 +47,14 @@ overflow: hidden;
 clip: rect(0, 0, 0, 0);
 white-space: nowrap;
 border-width: 0;
+}
+
+/* SITE  */
+
+#app {
+    padding: 2rem;
+    max-width: 112rem;
+    margin: 10rem auto;
 }
 
 header {
@@ -108,24 +113,21 @@ button:hover .img-hover {
 #container {
     border: 1px solid var(--table-stroke);
     border-radius: 1.2rem;
-    height: 60rem;
     min-width: 83rem;
+    max-height: 60rem;
     overflow: hidden;
 }
 
 table {
     display: flex;
     flex-direction: column;
-    min-width: 83rem;
-    width: 100%;
     font-size: 2rem;
     font-weight: bold;
     color: var(--text-color);
     border-collapse: collapse;
 }
-
-table tbody,
-table thead {
+tbody,
+thead {
     display: block;
 }
 
@@ -138,51 +140,40 @@ table tbody::-webkit-scrollbar-thumb{
     border-radius: 1.2rem;
 }
 
-table tbody {
+tbody {
     overflow-y: auto;
-    height: 55rem;
+    max-height: 55rem;
 }
 
-tbody td,
-thead th {
-    /* border: 1px solid red; */
+th,
+td {
     width: 100%;
 }
 
-table th {
+th {
     background-color: var(--table-header-color);
     text-align: left;
+    padding: 1.6rem 9.9rem 1.6rem 0rem;
+}
+
+th:first-child {
     padding: 1.6rem 4rem;
 }
 
-thead tr th:first-child{
-text-align: left;
+th:last-child {
+    padding-right: 8rem;
 }
 
-thead tr th:last-child{
-padding: 0 8rem;
-}
-
-table td {
+td {
     padding: 1.6rem 4rem;
-    text-align: left;
 }
 
-tbody tr td:first-child {
-    width: 50rem;
-    padding: 1.6rem 0 1.6rem 4rem;
-}
-
-tbody tr td:nth-child(2){
-    padding: 0 0 0 6rem ;
+td:first-child {
+    width: 52.7rem;
 }
 
 tbody tr td:nth-child(3){
-    padding: 0 15rem 0 0 ;
-}
-
-tbody tr {
-    max-height: 10rem;
+    padding: 0 9.3rem 0 0 ;
 }
 
 table tr:nth-child(odd){
@@ -212,11 +203,15 @@ td.user a {
     text-decoration: none;
 }
 
+td.user a:hover {
+    transform: scale(1.01)
+}
+
 td.user a span {
     font-weight: normal;
 }
 
-td .remove {
+.remove {
     font-size: 2rem;
     font-weight: bold;
 
@@ -228,16 +223,22 @@ td .remove {
     cursor: pointer;
 }
 
+.remove:hover {
+    color: var(--btn-remove-hover);
+    transform: scale(1.1);
+}
+
 tbody tr td.noFavYet {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6rem;
-    width: 107.8rem;
-    height: 55rem;
+    width: 107.5rem;
+    height: 54rem;
 }
 
-tbody tr td.noFavYet img{
+
+td.noFavYet img{
     width: 13rem;
 }
 
